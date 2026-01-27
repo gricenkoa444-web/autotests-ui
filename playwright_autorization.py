@@ -14,15 +14,24 @@ with sync_playwright() as playwright:
 #далее по плану провеки собираемся ввести данные в окна (для начала мы ищем на сайте XPATH)
 #создаем переменную email_input для того, что бы дальше работать с докатором
 #далее локатер по переменной email_input добавляем fill - для заполнения данными определенное поле
-    email_input = page.locator('//div[@data-testid="login-form-email-input"]//div//input')
+    #email_input = page.locator('//div[@data-testid="login-form-email-input"]//div//input')
+    #email_input.fill('user.name@gmail.com')
+#в этом случае, где у нас не просто указанный артибут, а у нас был полный путь, мы добавляем locator('input')
+    email_input = page.get_by_test_id('login-form-email-input').locator('input')
     email_input.fill('user.name@gmail.com')
 # далее нам нужно заполнить данными пароль, производим теже манипуляции что и юзернейм
     password_input = page.locator('//div[@data-testid="login-form-password-input"]//div//input')
     password_input.fill('password')
 # нажимаем кнопку логин
-    login_button = page.locator('//button[@data-testid="login-page-login-button"]')
+    #login_button = page.locator('//button[@data-testid="login-page-login-button"]')
+    #login_button.click()
+
+# get_by_test_id -внутри этого метода у playwright есть под коробкой формирует xpath локатор по которому находится
+# нужный элемент.Упрожает написание и поддержку автотестов
+    login_button =  page.get_by_test_id("login-page-login-button")#-указываем атрибут(более удобный)
     login_button.click()
-#проверим элемент visible
+
+# проверим элемент visible
     wrong_email_or_password_alert = page.locator('//div[@data-testid="login-page-wrong-email-or-password-alert"]')
     expect(wrong_email_or_password_alert).to_be_visible()
 #проверим что он содежит определнный тектс
