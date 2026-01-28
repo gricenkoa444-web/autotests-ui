@@ -16,7 +16,7 @@ with sync_playwright() as playwright:
 #далее локатер по переменной email_input добавляем fill - для заполнения данными определенное поле
     #email_input = page.locator('//div[@data-testid="login-form-email-input"]//div//input')
     #email_input.fill('user.name@gmail.com')
-#в этом случае, где у нас не просто указанный артибут, а у нас был полный путь, мы добавляем locator('input')
+#в этом случае, где у нас не просто указанный индификатор, а у нас был полный путь, мы добавляем locator('input')
     email_input = page.get_by_test_id('login-form-email-input').locator('input')
     email_input.fill('user.name@gmail.com')
 # далее нам нужно заполнить данными пароль, производим теже манипуляции что и юзернейм
