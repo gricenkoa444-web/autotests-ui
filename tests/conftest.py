@@ -1,5 +1,5 @@
 import pytest
-from playwright.sync_api import sync_playwright, Page
+from playwright.sync_api import sync_playwright, Page, Playwright # анатируем данную фикстуру
 
 @pytest.fixture # по дефолту должен открываться на каждый тест, поэтому скоуп не прописываем
 def chromium_page() -> Page:
@@ -12,3 +12,12 @@ def chromium_page() -> Page:
 # действия в автотестах - использовать данную фикстуру можно в области папки на тесты, которые есть в самой папке
 # Открытие хромиума, и иницилизация новой страницы и далее страница возвращается внутрь теста
 # Итого в тестах остается сама логика теста, а иницилизация страницы уехала в конфтест - что делает код более чистым
+
+
+@pytest.fixture # после установки плагина pytest-playwright
+def chromium_page(playwright: Playwright) -> Page:
+# иницирилизация нам не требуется, потому что playwright уже иницидизирован фнутри фикстуры
+    #with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=False)
+        yield browser.new_page()
+        browser.close()
