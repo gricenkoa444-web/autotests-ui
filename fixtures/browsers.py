@@ -1,9 +1,14 @@
 import pytest
 from playwright.sync_api import sync_playwright, expect, Page, Playwright
 
+@pytest.fixture
+def chromium_page(playwright: Playwright):
+    browser = playwright.chromium.launch(headless=False)
+    yield browser.new_page()
+    browser.close()
+
 @pytest.fixture(scope='session')
-def initialization_browse_state():
-    with sync_playwright() as playwright:
+def initialization_browse_state(playwright: Playwright):
         browser = playwright.chromium.launch(headless=False)
         context = browser.new_context()
         page = context.new_page()
@@ -23,6 +28,7 @@ def initialization_browse_state():
         registration_button_click.click()
 
         context.storage_state(path='browser-state.json')
+        browser.close()
 
 @pytest.fixture(scope='function')
 def chromium_page_with_state(initialization_browse_state, playwright: Playwright) -> Page:
