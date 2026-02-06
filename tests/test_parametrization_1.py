@@ -77,8 +77,7 @@ def test_identifiers_1(phone_number: str):
 
 # Обычная функция
 
-def format_phone_number(phone_number: str): -> str:
-    return f'{phone_number}: {user[phone_number]}'
+
 
 
 
