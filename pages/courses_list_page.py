@@ -36,11 +36,12 @@ class CourseListPage(BasePage):
         self.preview_image_upload_button = page.get_by_test_id(
             'create-course-preview-image-upload-widget-upload-button'
         )
+
+
+    # Course Card with image
         self.preview_image_remove_button = page.get_by_test_id(
             'create-course-preview-image-upload-widget-remove-button'
         )
-
-    # Course Card with image
         self.preview_image_upload_widget = page.get_by_test_id(
             'create-course-preview-image-upload-widget-preview-image'
         )
@@ -84,6 +85,43 @@ class CourseListPage(BasePage):
 
     def click_create_course_button(self):
         self.create_course_button.click()
+
+    def check_visible_create_course_title(self):
+        expect(self.create_course_title).to_be_visible()
+        expect(self.create_course_title).to_have_text('Create course')
+
+    def check_visible_disabled_create_course_button(self):
+        expect(self.disabled_create_course_button).to_be_visible()
+        expect(self.disabled_create_course_button).to_be_disabled()
+
+    def click_disabled_create_course_button(self):
+        expect(self.disabled_create_course_button).not_to_be_clickable()
+
+    def check_visible_course_card(self):
+        expect(self.preview_empty_icon).to_be_visible()
+
+        expect(self.preview_empty_title).to_be_visible()
+        expect(self.preview_empty_title).to_have_text('No image selected')
+
+        expect(self.preview_empty_description).to_be_visible()
+        expect(self.preview_empty_description).to_have_text('Preview of selected image will be displayed here')
+
+    def check_visible_image_upload_card(self):
+        expect(self.preview_image_upload_icon).to_be_visible()
+
+        expect(self.preview_image_upload_title).to_be_visible()
+        expect(self.preview_image_upload_title).to_have_text('Tap on "Upload image" button to select file')
+
+        expect(self.preview_image_upload_description).to_be_visible()
+        expect(self.preview_image_upload_description).to_have_text('Recommended file size 540X300')
+
+        expect(self.preview_image_upload_button).to_be_visible()
+
+    def check_visible_create_course_form(self):
+        expect(self.title_form_input).to_be_visible()
+        expect(self.title_form_input).to_have_value(title)
+
+
 
 
 
