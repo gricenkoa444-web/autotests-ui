@@ -10,10 +10,23 @@ class CourseListPage(BasePage):
         self.courses_title =page.get_by_test_id('courses-list-toolbar-title-text')
         self.create_course_button = page.get_by_test_id('courses-list-toolbar-create-course-button')
 
+    # Block with a course ( Course Card )
+        self.card_course_title = page.get_by_test_id('course-widget-title-text')
+        self.card_course_image = page.get_by_test_id('course-preview-image')
+        self.card_max_score_text = page.get_by_test_id('course-max-score-info-row-view-text')
+        self.card_min_score_text = page.get_by_test_id('course-min-score-info-row-view-text')
+        self.card_estimated_time_text = page.get_by_test_id('course-estimated-time-info-row-view-text')
+
+    # Course menu
+        self.course_menu_button = page.get_by_test_id('course-view-menu-button')
+        self.course_edit_item = page.get_by_test_id('course-view-edit-menu-item')
+        self.course_delete_item = page.get_by_test_id('course-view-delete-menu-item')
+
     # Empty block if there are no courses
         self.empty_view_icon = page.get_by_test_id('courses-list-empty-view-icon')
         self.empty_view_title = page.get_by_test_id('courses-list-empty-view-title-text')
         self.empty_view_description = page.get_by_test_id('courses-list-empty-view-description-text')
+
 
 
 
@@ -35,3 +48,43 @@ class CourseListPage(BasePage):
 
     def click_create_course_button(self):
         self.create_course_button.click()
+
+    def check_visible_course_card(
+            self,
+            index: int,
+            title: str,
+            max_score: str,
+            min_score: str,
+            estimated_time: str
+    ):
+        expect(self.card_course_image.nth(index)).to_be_visible()
+
+        expect(self.card_course_title.nth(index)).to_be_visible()
+        expect(self.card_course_title.nth(index)).to_have_text(title)
+
+        expect(self.card_max_score_text.nth(index)).to_be_visible()
+        expect(self.card_max_score_text.nth(index)).to_have_text(f"Max score: {max_score}")
+
+        expect(self.card_min_score_text.nth(index)).to_be_visible()
+        expect(self.card_min_score_text.nth(index)).to_have_text(f"Min score: {min_score}")
+
+        expect(self.card_estimated_time_text.nth(index)).to_be_visible()
+        expect(self.card_estimated_time_text.nth(index)).to_have_text(f"Estimated Time: {estimated_time}")
+
+    def click_edit_coures(self, index: int):
+        self.course_menu_button.nth(index).click()
+
+        expect(self.course_edit_item.nth(index)).to_be_visible()
+        self.course_edit_item.nth(index).click()
+
+    def click_delete_course(self, index: int):
+        self.course_menu_button.nth(index).click()
+
+        expect(self.course_delete_item.nth(index)).to_be_visible()
+        self.course_delete_item.nth(index).click()
+
+
+
+
+
+
