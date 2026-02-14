@@ -17,7 +17,7 @@ class CreateCoursePage(BasePage):
         self.preview_empty_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
         self.preview_empty_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
 
-    # Upload button, image deletion before viewing the course, and a block with information about the image being uploaded.
+    # Upload button, image deletion before viewing the course, and a block with information about the image being upl
         self.preview_image_upload_icon = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
         self.preview_image_upload_title = page.get_by_test_id(
             'create-course-preview-image-upload-widget-info-title-text'
@@ -40,7 +40,7 @@ class CreateCoursePage(BasePage):
         page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
         )
         self.create_course_description_textarea = (
-            page.get_by_test_id('create-course-form-description-input').locator('textarea')
+            page.get_by_test_id('create-course-form-description-input').locator('textarea').first
         )
         self.create_course_max_score_input = page.get_by_test_id('create-course-form-max-score-input').locator('input')
         self.create_course_min_score_input = page.get_by_test_id('create-course-form-min-score-input').locator('input')

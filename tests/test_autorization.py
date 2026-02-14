@@ -10,6 +10,7 @@ def test_wrong_email_or_password(login_page: LoginPage, email: str, password: st
         login_page.click_login_button()
         login_page.check_visible_wrong_email_or_password_alert()
 
+
 # До использования POM
         #chromium_page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
         #email_input = chromium_page.get_by_test_id('login-form-email-input').locator('input')
