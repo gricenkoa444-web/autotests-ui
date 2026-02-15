@@ -3,7 +3,7 @@ from typing import Pattern
 
 
 class BaseComponent:
-    def __inti__(self, page:Page):
+    def __init__(self, page:Page):
         self.page = page
 
 
