@@ -1,3 +1,5 @@
+from components.navigation.navbar_component import NavbarComponent
+from components.navigation.sidebar_component import SidebarComponent
 from pages.base_page import BasePage
 from playwright.sync_api import Playwright, Page, expect
 
@@ -5,6 +7,9 @@ from playwright.sync_api import Playwright, Page, expect
 class CoursesListPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
+
+        self.sidebar_component = SidebarComponent(page)
+        self.navbar = NavbarComponent(page)
 
     # Title and button for create course
         self.courses_title =page.get_by_test_id('courses-list-toolbar-title-text')
@@ -71,7 +76,7 @@ class CoursesListPage(BasePage):
         expect(self.card_estimated_time_text.nth(index)).to_be_visible()
         expect(self.card_estimated_time_text.nth(index)).to_have_text(f"Estimated time: {estimated_time}")
 
-    def click_edit_coures(self, index: int):
+    def click_edit_course(self, index: int):
         self.course_menu_button.nth(index).click()
 
         expect(self.course_edit_item.nth(index)).to_be_visible()
