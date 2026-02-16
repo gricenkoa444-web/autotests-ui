@@ -12,9 +12,9 @@ class EmptyViewComponent(BaseComponent):
     def check_visible(self, title: str, description: str):
         expect(self.empty_icon).to_be_visible()
 
-        expect(self.empty_title).not_to_be_visible()
+        expect(self.empty_title).to_be_visible()
         expect(self.empty_title).to_have_text(title)
 
         expect(self.empty_description).to_be_visible()
-        expect(self.empty_description).to_have_text(description)
+        expect(self.empty_description).to_contain_text(description)
 

@@ -76,7 +76,7 @@ class CreateCoursePage(BasePage):
     def check_visible_image_preview_empty_view(self):
         self.empty_view.check_visible(
             title = 'No image selected',
-            description = "'Preview of selected image will be displayed here"
+            description = "Preview of selected image will be displayed here"
 
         )
         #expect(self.preview_empty_icon).to_be_visible()

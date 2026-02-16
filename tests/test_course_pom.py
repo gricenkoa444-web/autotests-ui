@@ -41,11 +41,10 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
 
 
 
-    courses_list_page.check_visible_courses_title()
+    courses_list_page.toolbar_view.check_visible()
 
-    courses_list_page.chek_visible_create_course_button()
 
-    courses_list_page.check_visible_course_card(
+    courses_list_page.courses_view.check_visible(
         index=0,
         title=title,
         max_score=max_score,
@@ -53,6 +52,14 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
         estimated_time=estimated_time
     )
 
+@pytest.mark.courses
+@pytest.mark.regression
+def test_empty_courses_list_16(courses_list_page: CoursesListPage):
+    courses_list_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses')
+    courses_list_page.navbar.check_visible(' test_username!')
+    courses_list_page.sidebar_component.check_visible()
+    courses_list_page.toolbar_view.check_visible()
+    courses_list_page.check_visible_empty_view()
 
 
 
