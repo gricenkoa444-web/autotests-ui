@@ -1,5 +1,7 @@
 import pytest
 from playwright.sync_api import Page, expect
+
+from components.views.empty_view_component import EmptyViewComponent
 from pages.base_page import BasePage
 
 
@@ -7,15 +9,17 @@ class CreateCoursePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
+        self.empty_view = EmptyViewComponent(page, 'create-course-preview')
+
     # Title and button "Create course"
         self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.disabled_create_course_button = page.get_by_test_id('create-course-toolbar-create-course-button')
 
     # Course Card empty
-        self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
-        self.preview_empty_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
-        self.preview_empty_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
-        self.preview_empty_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
+        #self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
+        #self.preview_empty_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
+        #self.preview_empty_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
+        #self.preview_empty_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
 
     # Upload button, image deletion before viewing the course, and a block with information about the image being upl
         self.preview_image_upload_icon = page.get_by_test_id('create-course-preview-image-upload-widget-info-icon')
@@ -69,13 +73,18 @@ class CreateCoursePage(BasePage):
         expect(self.disabled_create_course_button).to_be_disabled()
 
     def check_visible_image_preview_empty_view(self):
-        expect(self.preview_empty_icon).to_be_visible()
+        self.empty_view.check_visible(
+            title = 'No image selected',
+            description = "'Preview of selected image will be displayed here"
+'
+        )
+        #expect(self.preview_empty_icon).to_be_visible()
 
-        expect(self.preview_empty_title).to_be_visible()
-        expect(self.preview_empty_title).to_have_text('No image selected')
+        #expect(self.preview_empty_title).to_be_visible()
+        #expect(self.preview_empty_title).to_have_text('No image selected')
 
-        expect(self.preview_empty_description).to_be_visible()
-        expect(self.preview_empty_description).to_have_text('Preview of selected image will be displayed here')
+        #expect(self.preview_empty_description).to_be_visible()
+        #expect(self.preview_empty_description).to_have_text('Preview of selected image will be displayed here')
 
     def check_visible_image_upload_view(self, is_image_uploaded: bool=False):
         expect(self.preview_image_upload_icon).to_be_visible()
