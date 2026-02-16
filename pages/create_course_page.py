@@ -10,13 +10,14 @@ class CreateCoursePage(BasePage):
         super().__init__(page)
 
         self.empty_view = EmptyViewComponent(page, 'create-course-preview')
+        self.empty_view_exercises = EmptyViewComponent(page, 'create-course-exercises')
 
     # Title and button "Create course"
         self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
         self.disabled_create_course_button = page.get_by_test_id('create-course-toolbar-create-course-button')
 
     # Course Card empty
-        #self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
+        self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
         #self.preview_empty_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
         #self.preview_empty_title = page.get_by_test_id('create-course-preview-empty-view-title-text')
         #self.preview_empty_description = page.get_by_test_id('create-course-preview-empty-view-description-text')
@@ -54,9 +55,9 @@ class CreateCoursePage(BasePage):
         self.create_exercise_button = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
 
     # A block that will be displayed when there are no assignments in a course.
-        self.exercises_empty_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
-        self.exercises_empty_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
-        self.exercises_empty_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
+        #self.exercises_empty_icon = page.get_by_test_id('create-course-exercises-empty-view-icon')
+        #self.exercises_empty_title = page.get_by_test_id('create-course-exercises-empty-view-title-text')
+        #self.exercises_empty_description = page.get_by_test_id('create-course-exercises-empty-view-description-text')
 
     def check_visible_create_course_title(self):
         expect(self.create_course_title).to_be_visible()
@@ -76,7 +77,7 @@ class CreateCoursePage(BasePage):
         self.empty_view.check_visible(
             title = 'No image selected',
             description = "'Preview of selected image will be displayed here"
-'
+
         )
         #expect(self.preview_empty_icon).to_be_visible()
 
@@ -167,15 +168,19 @@ class CreateCoursePage(BasePage):
         self.create_exercise_button.click()
 
     def check_visible_exercises_empty_view(self):
-        expect(self.exercises_empty_icon).to_be_visible()
-
-        expect(self.exercises_empty_title).to_be_visible()
-        expect(self.exercises_empty_title).to_have_text('There is no exercises')
-
-        expect(self.exercises_empty_description).to_be_visible()
-        expect(self.exercises_empty_description).to_have_text(
-            'Click on "Create exercise" button to create new exercise'
+        self.empty_view_exercises.check_visible(
+            title = 'There is no exercises',
+            description = 'Click on "Create exercise" button to create new exercise'
         )
+        #expect(self.exercises_empty_icon).to_be_visible()
+
+        #expect(self.exercises_empty_title).to_be_visible()
+        #expect(self.exercises_empty_title).to_have_text('There is no exercises')
+
+        #expect(self.exercises_empty_description).to_be_visible()
+        #expect(self.exercises_empty_description).to_have_text(
+            #'Click on "Create exercise" button to create new exercise'
+
 
     def click_delete_exercise_button(self, index: int):
         delete_exercise_button = self.page.get_by_test_id(
