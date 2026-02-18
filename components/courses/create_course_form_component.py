@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 from components.base_component import BaseComponent
 
@@ -10,7 +10,28 @@ class CreateCourseFormComponent(BaseComponent):
         self.title = page.get_by_test_id('create-course-form-title-input').locator('input')
         self.estimated_time = page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
         self.description = page.get_by_test_id('create-course-form-description-input').locator('input')
-        self.max_scor = page.get_by_test_id('create-course-form-max-score-input').locator('input')
+        self.max_score = page.get_by_test_id('create-course-form-max-score-input').locator('input')
         self.min_score = page.get_by_test_id('create-course-form-min-score-input').locator('input')
 
-    def fill_form(self, estimatsd_time: str, description: str, max_score: str, min_score: str):
+    def fill_form(self, title: str, estimated_time: str, description: str, max_score: str, min_score: str):
+        self.title.fill(title)
+        self.estimated_time.fill(estimated_time)
+        self.description.fill(description)
+        self.max_score.fill(max_score)
+        self.min_score.fill(min_score)
+
+    def check_visible(self, title: str, estimated_time: str, description: str, max_score: str, min_score: str):
+        expect(self.title).to_be_visible()
+        expect(self.title).to_have_text(title)
+
+        expect(self.estimated_time).to_be_visible()
+        expect(self.estimated_time).to_have_text(estimated_time)
+
+        expect(self.description).to_be_visible()
+        expect(self.description).to_have_text(description)
+
+        expect(self.max_score).to_be_visible()
+        expect(self.max_score).to_have_text(max_score)
+
+        expect(self.min_score).to_be_visible()
+        expect(self.min_score).to_have_text(min_score)

@@ -14,13 +14,13 @@ class RegistrationFormComponent(BaseComponent):
         self.password = page.get_by_test_id('registration-form-password-input').locator('input')
 
     def fill_form(self, email:str, username:str, password:str):
-        expect(self.email).to_be_visible()
+
         self.email.fill(email)
 
-        expect(self.username).to_be_visible()
+
         self.username.fill(username)
 
-        expect(self.password).to_be_visible()
+
         self.password.fill(password)
 
     def check_visible(self, email:str, username:str, password:str):
