@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 
 from components.base_component import BaseComponent
+from components.dashboard.dashboard_toolbar_view_component import DashboardToolbarViewComponent
 
 
 class RegistrationFormComponent(BaseComponent):
@@ -13,15 +14,17 @@ class RegistrationFormComponent(BaseComponent):
         self.username = page.get_by_test_id('registration-form-username-input').locator('input')
         self.password = page.get_by_test_id('registration-form-password-input').locator('input')
 
+        self.dashboard_toolbar = DashboardToolbarViewComponent(page)
+
     def fill_form(self, email:str, username:str, password:str):
-
         self.email.fill(email)
-
+        expect(self.email).to_have_value(email)
 
         self.username.fill(username)
-
+        expect(self.username).to_have_value(username)
 
         self.password.fill(password)
+        expect(self.password).to_have_value(password)
 
     def check_visible(self, email:str, username:str, password:str):
         expect(self.title).to_be_visible()

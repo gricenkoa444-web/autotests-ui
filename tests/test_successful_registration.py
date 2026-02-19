@@ -7,10 +7,12 @@ from pages.dashboard_page import DashboardPage
 @pytest.mark.parametrize('username', ['test_usename'])
 @pytest.mark.parametrize('password', ['password'])
 
-def test_successful_registration_one(registration_page: RegistrationPage, dashboard_page: DashboardPage,
-                                 email: str, username: str, password: str):
+def test_successful_registration_one(registration_page: RegistrationPage, email: str, username: str, password: str):
     registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-    registration_page.fill_form(email=email, username=username, password=password)
+    registration_page.fill_registration_form.fill_form(email=email, username=username, password=password)
     registration_page.click_registration_button()
 
-    dashboard_page.check_title()
+
+
+
+

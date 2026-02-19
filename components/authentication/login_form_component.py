@@ -10,13 +10,14 @@ class LoginFormComponent(BaseComponent):
         self.title = page.get_by_test_id('authentication-ui-course-title-text')
         self.login = page.get_by_test_id('login-form-email-input').locator('input')
         self.password = page.get_by_test_id('login-form-password-input').locator('input')
+        #self.login_button = page.get_by_test_id('login-page-login-button')
 
-    def fill_form(self, email: str, password: str):
+    def fill_form(self, email, password):
         self.login.fill(email)
 
         self.password.fill(password)
 
-    def check_visible(self, email: str, password: str):
+    def check_visible(self, email, password):
         expect(self.title).to_be_visible()
         expect(self.title).to_have_text('UI Course')
 
