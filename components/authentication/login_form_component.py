@@ -1,28 +1,28 @@
 from playwright.sync_api import Page, expect
 
 from components.base_component import BaseComponent
-
+from elements.text import Text
+from elements.input import Input
 
 class LoginFormComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.title = page.get_by_test_id('authentication-ui-course-title-text')
-        self.login = page.get_by_test_id('login-form-email-input').locator('input')
-        self.password = page.get_by_test_id('login-form-password-input').locator('input')
-        #self.login_button = page.get_by_test_id('login-page-login-button')
+        self.title = Text(page, 'authentication-ui-course-title-text', 'UI Course - title')
+        self.login = Input(page, 'login-form-email-input', 'Email')
+        self.password = Input(page, 'login-form-password-input', 'Password')
+
 
     def fill_form(self, email, password):
         self.login.fill(email)
-
         self.password.fill(password)
 
     def check_visible(self, email, password):
-        expect(self.title).to_be_visible()
-        expect(self.title).to_have_text('UI Course')
+        self.title.check_visible()
+        self.title.check_have_text('UI Course')
 
-        expect(self.login).to_be_visible()
-        expect(self.login).to_have_text(email)
+        self.login.check_visible()
+        self.login.check_have_text(email)
 
-        expect(self.password).to_be_visible()
-        expect(self.password).to_have_text(password)
+        self.password.check_visible()
+        self.password.check_have_text(password)
