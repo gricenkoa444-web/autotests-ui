@@ -16,7 +16,7 @@ class TestMarkHomework:
 
     @pytest.mark.smoke
     @pytest.mark.critical
-    @pytest.mark.regression
+
     def test_login(self):
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=False)
@@ -35,7 +35,7 @@ class TestMarkHomework:
 
             print('2.Test_login is ok')
 
-    @pytest.mark.regression
+
     def test_registration_save_json(self):
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=False)

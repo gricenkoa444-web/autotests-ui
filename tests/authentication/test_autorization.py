@@ -1,0 +1,14 @@
+import pytest
+from pages.authentication.login_page import LoginPage
+@pytest.mark.regression
+@pytest.mark.authorization
+class TestAuthorization:
+    @pytest.mark.parametrize('email', ['test.name@gmail.com'])
+    @pytest.mark.parametrize('password', ['password_1'])
+    def test_wrong_email_or_password(self, login_page: LoginPage, email: str, password: str):
+        login_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login')
+        login_page.login_form.fill_form(email, password)
+        login_page.click_login_button()
+        login_page.check_visible_wrong_email_or_password_alert()
+
+

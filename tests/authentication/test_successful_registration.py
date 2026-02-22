@@ -1,7 +1,6 @@
 import pytest
-from playwright.sync_api import Page, expect, Playwright
-from pages.registration_page import RegistrationPage
-from pages.dashboard_page import DashboardPage
+from pages.authentication.registration_page import RegistrationPage
+
 
 @pytest.mark.parametrize('email', ['test_email@gmail.com'])
 @pytest.mark.parametrize('username', ['test_usename'])
