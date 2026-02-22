@@ -23,28 +23,6 @@
 ![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
 ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
 
-### 📁 Структура проекта
-Project/
-├── .venv/ # Виртуальное окружение
-├── pages/ # Page Objects
-├── components/ # Page Components
-├── elements/ # Page Factory (базовые элементы)
-├── fixtures/ # Фикстуры для тестов
-├── testdata/ # Тестовые данные
-├── tests/ # Тестовые сценарии
-├── test_fixture/ # Дополнительные фикстуры
-├── test_project_hw/ # Домашние задания/проекты
-│ ├── testdata/ # Тестовые данные для проекта
-│ │ ├── testdata/ # Вложенная директория
-│ │ ├── authentication/ # Данные для автотестов
-│ │ ├── init.py
-│ │ ├── test_autorization.py # Тесты авторизации
-│ │ └── test_registration.py # Тесты регистрации
-│ └── courses/ # Учебные курсы
-├── playwright/ # Playwright конфигурация
-├── Create_site_1/ # Учебный проект
-└── requirements.txt # Зависимости
-
 # Установка зависимостей
 pip install -r requirements.txt
 playwright install
