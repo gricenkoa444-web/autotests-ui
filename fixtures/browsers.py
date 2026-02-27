@@ -18,7 +18,7 @@ def initialization_browse_state(playwright: Playwright):
 
         registration_page = RegistrationPage(page=page)
         registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-        registration_page.fill_registration_form.fill_form(
+        registration_page.registration_form.fill_form(
             email='test.use@gmail.com', username='test_username', password='password'
         )
         registration_page.click_registration_button()
