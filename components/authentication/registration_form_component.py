@@ -1,5 +1,5 @@
 from playwright.sync_api import Page, expect
-
+import allure
 from components.base_component import BaseComponent
 from components.dashboard.dashboard_toolbar_view_component import DashboardToolbarViewComponent
 from elements.text import Text
@@ -18,6 +18,7 @@ class RegistrationFormComponent(BaseComponent):
 
         self.dashboard_toolbar = DashboardToolbarViewComponent(page)
 
+    @allure.step('Fill registration form')
     def fill_form(self, email:str, username:str, password:str):
         self.email.fill(email)
         self.email.check_have_value(email)
@@ -28,6 +29,7 @@ class RegistrationFormComponent(BaseComponent):
         self.password.fill(password)
         self.password.check_have_value(password)
 
+    @allure.step('Check visible registration form')
     def check_visible(self, email:str, username:str, password:str):
         self.title.check_visible()
         self.title.check_have_text('UI Course')
