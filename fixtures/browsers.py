@@ -8,7 +8,7 @@ from config import settings
 from tools.playwright.pages import initialize_playwright_page
 
 
-@pytest.fixture(params=settings.browsers)  # Добавляем параметризацию
+@pytest.fixture(params=settings.browser)  # Добавляем параметризацию
 def chromium_page(request: SubRequest, playwright: Playwright) -> Page:
     yield from initialize_playwright_page(playwright, test_name=request.node.name)
 
@@ -29,7 +29,7 @@ def initialization_browse_state(playwright: Playwright):
         context.storage_state(path=settings.browser_state_file)
         browser.close()
 
-@pytest.fixture(params=settings.browsers)  # Добавляем параметризацию
+@pytest.fixture(params=settings.browser)  # Добавляем параметризацию
 def chromium_page_with_state(initialize_browser_state, request: SubRequest, playwright: Playwright) -> Page:
     yield from initialize_playwright_page(
         playwright,
