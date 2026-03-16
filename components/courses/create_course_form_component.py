@@ -1,5 +1,5 @@
 from playwright.sync_api import Page, expect
-
+import allure
 from components.base_component import BaseComponent
 from elements.input import Input
 
@@ -23,16 +23,16 @@ class CreateCourseFormComponent(BaseComponent):
 
     def check_visible(self, title: str, estimated_time: str, description: str, max_score: str, min_score: str):
         self.title.check_visible()
-        self.title.check_have_text(title)
+        self.title.check_have_value(title)
 
         self.estimated_time.check_visible()
-        self.estimated_time.check_have_text(estimated_time)
+        self.estimated_time.check_have_value(estimated_time)
 
         self.description.check_visible()
-        self.description.check_have_text(description)
+        self.description.check_have_value(description)
 
         self.max_score.check_visible()
-        self.max_score.check_have_text(max_score)
+        self.max_score.check_have_value(max_score)
 
         self.min_score.check_visible()
-        self.min_score.check_have_text(min_score)
+        self.min_score.check_have_value(min_score)

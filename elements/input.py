@@ -12,7 +12,7 @@ class Input(BaseElement):
 
 
     def fill(self, value: str, nth: int = 0,  **kwargs):
-        with allure.step(f'Fill {self.type_of} "{self.name} to value "{value}"'):
+        with allure.step(f'Fill {self.type_of} "{self.name}" to have value "{value}"'):
             locator = self.get_locator(nth, **kwargs)
             locator.fill(value)
 
