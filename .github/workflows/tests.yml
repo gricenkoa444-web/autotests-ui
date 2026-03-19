@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/chekout@v3
+        uses: actions/cheсkout@v3
 
       - name: setup-python
         uses: actions/setup-python@v4
@@ -34,7 +34,7 @@ jobs:
           pytest -m regression --alluredir=./allure-results --numprocesses 2
 
       - name: Get Allure history
-        uses: actions/chekout@v3
+        uses: actions/cheсkout@v3
         if: always()
         continue-on-error: true
         with:
