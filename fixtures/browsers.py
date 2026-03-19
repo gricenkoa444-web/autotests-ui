@@ -15,7 +15,7 @@ def chromium_page(request: SubRequest, playwright: Playwright) -> Page:
 
 @pytest.fixture(scope='session')
 def initialization_browse_state(playwright: Playwright):
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=settings.headless)
         context = browser.new_context()
         page = context.new_page()
 
